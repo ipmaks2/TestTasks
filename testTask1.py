@@ -40,7 +40,7 @@ def test_emptyList():
     f = test_emptyList.finder
     f.assignSeq([])
     assert [] == f.findPairs()
-    assert '' == f.__str__()
+    assert '' == str(f)
 
 
 def test_noPairs():
@@ -52,7 +52,7 @@ def test_noPairs():
     f = test_noPairs.finder
     f.assignSeq([1])
     assert [] == f.findPairs()
-    assert '' == f.__str__()
+    assert '' == str(f)
 
 
 def test_odd():
@@ -64,7 +64,7 @@ def test_odd():
     f.assignSeq([1, 2, 3, 5, 9, 8, 5])
     pairs = f.findPairs()
     assert 3 == len(pairs)
-    assert '(1, 9),(2, 8),(5, 5)' == f.__str__()
+    assert '(1, 9),(2, 8),(5, 5)' == str(f)
     for pair in pairs:
         assert pair.getPair() in [(1, 9),(5, 5),(2, 8)]
 
@@ -77,7 +77,7 @@ def test_even():
     f.assignSeq([2, 8])
     pairs = f.findPairs()
     assert 1 == len(pairs)
-    assert '(2, 8)' == f.__str__()
+    assert '(2, 8)' == str(f)
     for pair in pairs:
         assert pair.getPair() in [(2, 8)]
 
@@ -91,7 +91,7 @@ def test_notNumericElement():
     f.assignSeq([2, 8, None])
     pairs = f.findPairs()
     assert 0 == len(pairs)
-    assert 'error' in f.__str__().lower()
+    assert 'error' in str(f).lower()
 
 
 

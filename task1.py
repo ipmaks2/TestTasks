@@ -23,10 +23,11 @@ class Pair(object):
     Stores pair and helpers for printing them out
 
     Methods:
-        __str__ - used for printing one pair
+        __str__  - used for printing one pair
         __repr__ - used for debug
         __init__ - constructor, stores elements in ordered
-        getPair - return one pair as tuple of ordered elements
+        getPair  - return one pair as tuple of ordered
+                   elements
 
     '''
     def __str__(self):
@@ -61,10 +62,12 @@ class PairFinder(object):
 
 
     Methods:
-        __str__ - used for output pairs as string
-        __init__ - constructor, creates and initialize
-        assignSeq - used to pass list of elements where to search for pairs
-        findPairs - complete search of pairs in provided previously sequence
+        __str__   - used for output pairs as string
+        __init__  - constructor, creates and initialize
+        assignSeq - used to pass list of elements where to
+                    search for pairs
+        findPairs - complete search of pairs in provided
+                    previously sequence
                     returns list of objects: Pair
     '''
     pairSum = 10  # Expected sum for pair
@@ -72,7 +75,7 @@ class PairFinder(object):
     def __str__(self):
         if self.error:
             return 'Error'
-        return ','.join([pair.__str__() for pair in self.pairs])
+        return ','.join([str(pair) for pair in self.pairs])
 
     def __init__(self):
         self.sequence = []
@@ -102,7 +105,6 @@ class PairFinder(object):
         return self.pairs
 
 
-############################################################
 ############################################################
 
 if __name__ == '__main__':
