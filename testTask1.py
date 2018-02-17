@@ -8,7 +8,7 @@ Smoke tests For PairFinder:
 #2 List without pairs
 #3 Odd num elements
 #4 Even num elements
-#5 List with only 1 pair
+#5 Incorrect element in list (not numeric)
 
 Assert 1 for return pairs list
 assert 2 for formatted string
@@ -74,25 +74,24 @@ def test_even():
     we should receive all expected pairs.
     '''
     f = test_even.finder
-    f.assignSeq([1, 2, 3, 9, 8, 5])
-    pairs = f.findPairs()
-    assert 2 == len(pairs)
-    assert '(1, 9),(2, 8)' == f.__str__()
-    for pair in pairs:
-        assert pair.getPair() in [(1, 9),(2, 8)]
-
-def test_onePair():
-    '''
-    Test verifies: when we pass 2 elements as 1 pair,
-    we should receive this one pair.
-    '''
-    f = test_onePair.finder
     f.assignSeq([2, 8])
     pairs = f.findPairs()
     assert 1 == len(pairs)
     assert '(2, 8)' == f.__str__()
     for pair in pairs:
         assert pair.getPair() in [(2, 8)]
+
+def test_notNumericElement():
+    '''
+    Test verifies: when we pass incorrect element in list,
+    we should receive error message and empty list.
+
+    '''
+    f = test_notNumericElement.finder
+    f.assignSeq([2, 8, None])
+    pairs = f.findPairs()
+    assert 0 == len(pairs)
+    assert 'error' in f.__str__().lower()
 
 
 

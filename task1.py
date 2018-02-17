@@ -70,11 +70,14 @@ class PairFinder(object):
     pairSum = 10  # Expected sum for pair
 
     def __str__(self):
+        if self.error:
+            return 'Error'
         return ','.join([pair.__str__() for pair in self.pairs])
 
     def __init__(self):
         self.sequence = []
         self.pairs = []
+        self.error = False
 
     def assignSeq(self, seq):
         self.sequence = seq
@@ -85,10 +88,16 @@ class PairFinder(object):
             seq = self.sequence[:]
             while (seq):
                 n1 = seq.pop()
-                n2 = self.pairSum - n1
-                if seq.count(n2):
-                    seq.pop(seq.index(n2))
-                    self.pairs.append(Pair(n1, n2))
+                try:
+                    n2 = self.pairSum - n1
+                    if seq.count(n2):
+                        seq.pop(seq.index(n2))
+                        self.pairs.append(Pair(n1, n2))
+                except TypeError:
+                    self.error = True
+                    self.pairs = []
+                    break
+
             self.pairs.sort(key=lambda x: x.n1)
         return self.pairs
 
