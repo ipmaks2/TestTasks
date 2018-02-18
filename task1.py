@@ -37,11 +37,8 @@ class Pair(object):
         return str(self.__dict__)
 
     def __init__(self, n1, n2):
-        pair = (n1, n2)
-        nMin = min(pair)
-        nMax = max(pair)
-        self.n1 = nMin
-        self.n2 = nMax
+        self.n1 = min(n1, n2)
+        self.n2 = max(n1, n2)
 
     def getPair(self):
        return (self.n1, self.n2)
@@ -87,13 +84,20 @@ class PairFinder(object):
         self.pairs = []
 
     def findPairs(self):
+        '''
+        Method to return pairs, where sum equals to pairSum
+        If we call method to return pairs for first time,
+        then find pairs, otherwise just return  pairs.
+        '''
         if not self.pairs:
             seq = self.sequence[:]
             while (seq):
                 n1 = seq.pop()
+                # attempt to protect from incorect 
+                # element in list
                 try:
                     n2 = self.pairSum - n1
-                    if seq.count(n2):
+                    if (n2 in seq):
                         seq.pop(seq.index(n2))
                         self.pairs.append(Pair(n1, n2))
                 except TypeError:
