@@ -11,8 +11,6 @@ Sample output:
 Module Pairs has classes: Pair and PairFinder
 
 Assumptions:
-    - numbers should be less then 10
-    - zeros not acceptable
     - let's output pair when minimal value goes first
     - let's sort all pairs by first (minimal) number
 
@@ -41,7 +39,10 @@ class Pair(object):
         self.n2 = max(n1, n2)
 
     def getPair(self):
-       return (self.n1, self.n2)
+        '''
+        returns tuple as (n1, n2)
+        '''
+        return (self.n1, self.n2)
 
 
 class PairFinder(object):
@@ -80,6 +81,10 @@ class PairFinder(object):
         self.error = False
 
     def assignSeq(self, seq):
+        '''
+        Assigns list of numeric elements, where search
+        for pairs
+        '''
         self.sequence = seq
         self.pairs = []
 
@@ -123,8 +128,8 @@ if __name__ == '__main__':
     print p2.getPair()
 
     f = PairFinder()
-    f.assignSeq([1,2,3,4,5,6,7,8,9] )
-    f.findPairs()
+    f.assignSeq([1,2,3,4,5,6,7,8,9, 0, 10, -100, 110, 11.5, -1.5] )
+    print repr(f.findPairs())
     print f
     print f.__dict__
 

@@ -42,6 +42,16 @@ def test_emptyList():
     assert [] == f.findPairs()
     assert '' == str(f)
 
+def test_notNumericElement():
+    '''
+    Test verifies: when we pass incorrect element in list,
+    we should receive error message and empty list.
+    '''
+    f = test_notNumericElement.finder
+    f.assignSeq([2, 8, None])
+    pairs = f.findPairs()
+    assert 0 == len(pairs)
+    assert 'error' in str(f).lower()
 
 def test_noPairs():
     '''
@@ -80,18 +90,5 @@ def test_even():
     assert '(2, 8)' == str(f)
     for pair in pairs:
         assert pair.getPair() in [(2, 8)]
-
-def test_notNumericElement():
-    '''
-    Test verifies: when we pass incorrect element in list,
-    we should receive error message and empty list.
-
-    '''
-    f = test_notNumericElement.finder
-    f.assignSeq([2, 8, None])
-    pairs = f.findPairs()
-    assert 0 == len(pairs)
-    assert 'error' in str(f).lower()
-
 
 
