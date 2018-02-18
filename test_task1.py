@@ -1,6 +1,6 @@
 '''
 Cmd to run tests:
-     pytest -v -s testTask1.py
+     pytest -v -s test_task1.py
 
 Smoke tests For PairFinder:
 
@@ -18,51 +18,50 @@ Assert 3 for object count
 
 
 from task1 import PairFinder
-import pytest
 
-def setup_function(f):
+def setup_function(func):
     '''
     Setup for every test. Creates new object to test.
     '''
-    f.finder = PairFinder()
+    func.finder = PairFinder()
 
-def teardown_function(f):
+def teardown_function(func):
     '''
     Teardown for every test. Destroys object after testing.
     '''
-    del(f.finder)
+    del func.finder
 
-def test_emptyList():
+def test_empty_list():
     '''
     Test verifies: when we pass empty list, we should
     receive empty list of pairs
     '''
-    f = test_emptyList.finder
-    f.assignSeq([])
-    assert [] == f.findPairs()
-    assert '' == str(f)
+    finder = test_empty_list.finder
+    finder.assignseq([])
+    assert finder.findpairs() == []
+    assert str(finder) == ''
 
-def test_notNumericElement():
+def test_not_numeric_element():
     '''
     Test verifies: when we pass incorrect element in list,
     we should receive error message and empty list.
     '''
-    f = test_notNumericElement.finder
-    f.assignSeq([2, 8, None])
-    pairs = f.findPairs()
-    assert 0 == len(pairs)
-    assert 'error' in str(f).lower()
+    finder = test_not_numeric_element.finder
+    finder.assignseq([2, 8, None])
+    pairs = finder.findpairs()
+    assert len(pairs) == 0
+    assert 'error' in str(finder).lower()
 
-def test_noPairs():
+def test_no_pairs():
     '''
     Test verifies: when we pass list with elements,
     but no pairs (with sum 10), we should receive
     empty list of pairs.
     '''
-    f = test_noPairs.finder
-    f.assignSeq([1])
-    assert [] == f.findPairs()
-    assert '' == str(f)
+    finder = test_no_pairs.finder
+    finder.assignseq([1])
+    assert finder.findpairs() == []
+    assert str(finder) == ''
 
 
 def test_odd():
@@ -70,25 +69,25 @@ def test_odd():
     Test verifies: when we pass odd number of elements,
     we should receive all expected pairs.
     '''
-    f = test_odd.finder
-    f.assignSeq([1, 2, 3, 5, 9, 8, 5])
-    pairs = f.findPairs()
-    assert 3 == len(pairs)
-    assert '(1, 9),(2, 8),(5, 5)' == str(f)
+    finder = test_odd.finder
+    finder.assignseq([1, 2, 3, 5, 9, 8, 5])
+    pairs = finder.findpairs()
+    assert len(pairs) == 3
+    assert str(finder) == '(1, 9), (2, 8), (5, 5)'
     for pair in pairs:
-        assert pair.getPair() in [(1, 9),(5, 5),(2, 8)]
+        assert pair.getpair() in [(1, 9), (5, 5), (2, 8)]
 
 def test_even():
     '''
     Test verifies: when we pass even number of elements,
     we should receive all expected pairs.
     '''
-    f = test_even.finder
-    f.assignSeq([2, 8])
-    pairs = f.findPairs()
-    assert 1 == len(pairs)
-    assert '(2, 8)' == str(f)
+    finder = test_even.finder
+    finder.assignseq([2, 8])
+    pairs = finder.findpairs()
+    assert len(pairs) == 1
+    assert str(finder) == '(2, 8)'
     for pair in pairs:
-        assert pair.getPair() in [(2, 8)]
+        assert pair.getpair() in [(2, 8)]
 
 

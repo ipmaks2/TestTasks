@@ -24,25 +24,25 @@ class Pair(object):
         __str__  - used for printing one pair
         __repr__ - used for debug
         __init__ - constructor, stores elements in ordered
-        getPair  - return one pair as tuple of ordered
+        getpair  - return one pair as tuple of ordered
                    elements
 
     '''
     def __str__(self):
-        return '({}, {})'.format(self.n1, self.n2)
+        return '({}, {})'.format(self.num1, self.num2)
 
     def __repr__(self):
         return str(self.__dict__)
 
     def __init__(self, n1, n2):
-        self.n1 = min(n1, n2)
-        self.n2 = max(n1, n2)
+        self.num1 = min(n1, n2)
+        self.num2 = max(n1, n2)
 
-    def getPair(self):
+    def getpair(self):
         '''
         returns tuple as (n1, n2)
         '''
-        return (self.n1, self.n2)
+        return (self.num1, self.num2)
 
 
 class PairFinder(object):
@@ -50,7 +50,7 @@ class PairFinder(object):
     Helps to find pairs of numbers.
 
     Class attributes:
-        pairSum - stores sum of pair elements, used for
+        pairsum - stores sum of pair elements, used for
                   finding pairs
 
     Object attributes:
@@ -62,25 +62,28 @@ class PairFinder(object):
     Methods:
         __str__   - used for output pairs as string
         __init__  - constructor, creates and initialize
-        assignSeq - used to pass list of elements where to
+        assignseq - used to pass list of elements where to
                     search for pairs
-        findPairs - complete search of pairs in provided
+        findpairs - complete search of pairs in provided
                     previously sequence
                     returns list of objects: Pair
     '''
-    pairSum = 10  # Expected sum for pair
+    pairsum = 10  # Expected sum for pair
 
     def __str__(self):
         if self.error:
             return 'Error'
-        return ','.join([str(pair) for pair in self.pairs])
+        return ', '.join([str(pair) for pair in self.pairs])
+
+    def __repr__(self):
+        return str(self.__dict__)
 
     def __init__(self):
         self.sequence = []
         self.pairs = []
         self.error = False
 
-    def assignSeq(self, seq):
+    def assignseq(self, seq):
         '''
         Assigns list of numeric elements, where search
         for pairs
@@ -88,7 +91,7 @@ class PairFinder(object):
         self.sequence = seq
         self.pairs = []
 
-    def findPairs(self):
+    def findpairs(self):
         '''
         Method to return pairs, where sum equals to pairSum
         If we call method to return pairs for first time,
@@ -96,21 +99,21 @@ class PairFinder(object):
         '''
         if not self.pairs:
             seq = self.sequence[:]
-            while (seq):
-                n1 = seq.pop()
-                # attempt to protect from incorect 
+            while seq:
+                num1 = seq.pop()
+                # attempt to protect from incorect
                 # element in list
                 try:
-                    n2 = self.pairSum - n1
-                    if (n2 in seq):
-                        seq.pop(seq.index(n2))
-                        self.pairs.append(Pair(n1, n2))
+                    num2 = self.pairsum - num1
+                    if num2 in seq:
+                        seq.pop(seq.index(num2))
+                        self.pairs.append(Pair(num1, num2))
                 except TypeError:
                     self.error = True
                     self.pairs = []
                     break
 
-            self.pairs.sort(key=lambda x: x.n1)
+            self.pairs.sort(key=lambda x: x.num1)
         return self.pairs
 
 
@@ -118,18 +121,18 @@ class PairFinder(object):
 
 if __name__ == '__main__':
 
-    p1 = Pair(1, 2)
-    p2 = Pair(2, 4)
+    pair1 = Pair(1, 2)
+    pair2 = Pair(2, 4)
 
-    print p1
-    print p2
+    print pair1
+    print pair2
 
-    print p1.getPair()
-    print p2.getPair()
+    print pair1.getpair()
+    print pair2.getpair()
 
-    f = PairFinder()
-    f.assignSeq([1,2,3,4,5,6,7,8,9, 0, 10, -100, 110, 11.5, -1.5] )
-    print repr(f.findPairs())
-    print f
-    print f.__dict__
+    finder = PairFinder()
+    finder.assignseq([1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 10, -100, 110, 11.5, -1.5])
+    print repr(finder.findpairs())
+    print finder
+    print repr(finder)
 
