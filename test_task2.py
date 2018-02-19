@@ -2,17 +2,15 @@
 Cmd to run tests:
     pytest -v -s test_task2.py
 '''
-from task2 import foo
+from task2v2 import foo
 import pytest
-
-ATTR = 'aliases'
 
 def setup_function():
     '''
     Prepare environment before test
     Enshure environment is OK
     '''
-    assert hasattr(foo, ATTR) is False
+    pass
 
 def teardown_function():
     '''
@@ -20,8 +18,7 @@ def teardown_function():
     Clear attribute with stored call names
     from completed test,
     '''
-    if hasattr(foo, ATTR):
-        delattr(foo, ATTR)
+    pass
 
 @pytest.mark.tc001
 def test_as_expected_from_task(capsys):
