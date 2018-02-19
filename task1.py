@@ -131,7 +131,8 @@ if __name__ == '__main__':
     print pair2.getpair()
 
     finder = PairFinder()
-    finder.assignseq([1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 10, -100, 110, 11.5, -1.5])
+    finder.assignseq([1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 10,
+                      -100, 110, 11.5, -1.5])
     print repr(finder.findpairs())
     print finder
     print repr(finder)
