@@ -1,4 +1,5 @@
 '''
+Implemented with Python 2.7.
 Classes to find any pairs of numbers in sequence that add
 up to 10.
 
@@ -93,7 +94,7 @@ class PairFinder(object):
 
     def findpairs(self):
         '''
-        Method to return pairs, where sum equals to pairSum
+        Method to return pairs, where sum equals to pairsum
         If we call method to return pairs for first time,
         then find pairs, otherwise just return  pairs.
         '''

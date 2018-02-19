@@ -1,4 +1,6 @@
 '''
+Implemented with Python 2.7 and pytest.
+
 Cmd to run tests:
      pytest -v -s test_task1.py
 

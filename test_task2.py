@@ -1,4 +1,5 @@
 '''
+Implemented with Python 2.7 and pytest.
 Cmd to run tests:
     pytest -v -s test_task2.py
 '''
@@ -9,6 +10,7 @@ def setup_function():
     '''
     Prepare environment before test
     Enshure environment is OK
+    Not used for task2v2.py
     '''
     pass
 
@@ -17,6 +19,7 @@ def teardown_function():
     Clean environment after test.
     Clear attribute with stored call names
     from completed test,
+    Not used for task2v2.py
     '''
     pass
 

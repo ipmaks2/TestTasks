@@ -1,18 +1,24 @@
 '''
- Module with implemented foo(), which counts
- by what reference it was called.
-
- It demonstartes how inspect module can be used for it.
- Preliminary version, should be improved.
+Implemented in Python 2.7.
+Module with implemented foo(), which counts
+by what reference it was called.
 '''
-from inspect import stack
-from operator import methodcaller
 from functools import partial
 
 count = 1
 
 def count_calls(func, lcount=1):
+    '''
+    Used as decorator
+    Helps to count imaginary lenght of references to
+    original called function
+    '''
     def callf(func, lcount):
+        '''
+        Used as actualy returned function to be called
+        every time called with new reference, lcount
+        parameter increased and updated in global variable
+        '''
         global count
         count = lcount
         func()
@@ -22,14 +28,13 @@ def count_calls(func, lcount=1):
 @count_calls
 def foo():
     '''
-    Prints out imaginary lenght from called reference to function
-    to original name foo.
+    Prints out imaginary lenght from called reference to
+    function to original name foo.
+
+    Use global variable <count>
     '''
-    global count
     print count
     return foo
-
-# foo = count_calls(foo)
 
 
 if __name__ == '__main__':
