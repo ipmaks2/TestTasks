@@ -16,8 +16,8 @@ Assert 3 for object count
 
 '''
 
-
 from task1 import PairFinder
+import pytest
 
 def setup_function(func):
     '''
@@ -31,6 +31,7 @@ def teardown_function(func):
     '''
     del func.finder
 
+@pytest.mark.tc001
 def test_empty_list():
     '''
     Test verifies: when we pass empty list, we should
@@ -41,6 +42,7 @@ def test_empty_list():
     assert finder.findpairs() == []
     assert str(finder) == ''
 
+@pytest.mark.tc002
 def test_not_numeric_element():
     '''
     Test verifies: when we pass incorrect element in list,
@@ -52,6 +54,7 @@ def test_not_numeric_element():
     assert len(pairs) == 0
     assert 'error' in str(finder).lower()
 
+@pytest.mark.tc003
 def test_no_pairs():
     '''
     Test verifies: when we pass list with elements,
@@ -63,7 +66,7 @@ def test_no_pairs():
     assert finder.findpairs() == []
     assert str(finder) == ''
 
-
+@pytest.mark.tc004
 def test_odd():
     '''
     Test verifies: when we pass odd number of elements,
@@ -77,6 +80,7 @@ def test_odd():
     for pair in pairs:
         assert pair.getpair() in [(1, 9), (5, 5), (2, 8)]
 
+@pytest.mark.tc005
 def test_even():
     '''
     Test verifies: when we pass even number of elements,

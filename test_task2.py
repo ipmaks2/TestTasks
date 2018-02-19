@@ -3,6 +3,7 @@ Cmd to run tests:
     pytest -v -s test_task2.py
 '''
 from task2 import foo
+import pytest
 
 ATTR = 'aliases'
 
@@ -22,6 +23,7 @@ def teardown_function():
     if hasattr(foo, ATTR):
         delattr(foo, ATTR)
 
+@pytest.mark.tc001
 def test_as_expected_from_task(capsys):
     '''
     When called sequence as in Task #2 from mail,
@@ -36,6 +38,7 @@ def test_as_expected_from_task(capsys):
     assert out == '1\n1\n2\n2\n3\n'
     assert err == ''
 
+@pytest.mark.tc002
 def test_no_increment_with_original_name(capsys):
     '''
     When called with original name,
@@ -49,7 +52,7 @@ def test_no_increment_with_original_name(capsys):
     assert out == '1\n1\n1\n1\n'
     assert err == ''
 
-
+@pytest.mark.tc003
 def test_no_increment_with_secondary_name(capsys):
     '''
     When called with secondary name several time,
@@ -63,7 +66,7 @@ def test_no_increment_with_secondary_name(capsys):
     assert out == '1\n2\n2\n2\n'
     assert err == ''
 
-
+@pytest.mark.tc004
 def test_increment_with_reassign_same_name(capsys):
     '''
     When called with reassigned same name,
@@ -77,7 +80,7 @@ def test_increment_with_reassign_same_name(capsys):
     assert out == '1\n2\n3\n4\n'
     assert err == ''
 
-
+@pytest.mark.tc005
 def test_increment_with_reassign_different_names(capsys):
     '''
     When called with reassigned different names,
